@@ -56,7 +56,7 @@ spring:
       on-profile: prod
   datasource:
     username: root
-    url: jdbc:mysql://localhost:3306/db_imperio_sables_prod?createDatabaseIfNotExist=true # Le cambié la BD a _prod para diferenciarla de test
+    url: jdbc:mysql://localhost:3306/db_imperio_sables_prod?createDatabaseIfNotExist=true
     driverClassName: com.mysql.cj.jdbc.Driver
     password: ''
   jpa:

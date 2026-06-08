@@ -34,13 +34,13 @@ public class SableService {
     }
 
     public SableDTO buscarPorJedi(Integer jedi_id){
-        return convertirADTO(sableRepository.findByJedi_id(jedi_id));
+        return convertirADTO(sableRepository.findByJediId(jedi_id));
     }
 
     private SableDTO convertirADTO(Sables s) {
         SableDTO dto = new SableDTO();
         dto.setId(s.getId());
-        dto.setJediId(s.getJedi_id());
+        dto.setJediId(s.getJediId());
         try {
             Cristal cristalJedi = cristalService.buscarPorId(s.getCristal().getId());
             dto.setColor(cristalJedi.getColor());

@@ -29,7 +29,7 @@ public class Sables {
     private String bando;
 
     @NotNull(message = "El jedi siempre debe estar")
-    private Integer jedi_id;
+    private Integer jediId;
 
     @ManyToOne
     @JoinColumn(name = "id_cristal_fk") 
