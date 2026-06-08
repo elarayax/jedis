@@ -8,3 +8,7 @@ esto ya que ahora hay un método que lo hace y no es un llamado de un for a la r
 también se editó el service de jedi que ahora recibe un objeto, además de que se creo el archivo SableExternoDTO que precisamente trae ese
 objeto nuevo, ahora pueden recibir y modificar objetos de otros microservicios en su microservicio actual
 también hay una v2 de la base de datos de sables, ya que sea agrega la nueva clase y se debe actualizar todo.
+
+v3:
+Se cambia el clásico application.properties por application.yml, este sigue el estándar de yaml, además de agregar perfiles, tanto dev
+(desarrollo), test y prod (producción), tiene sus variables globales y nos permite estár listos para mantener nuestros microservicios andando.
