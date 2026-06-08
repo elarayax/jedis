@@ -39,13 +39,12 @@ public class SableController {
     }
 
     @GetMapping("/buscar-por-jedi/{jediId}")
-    public ResponseEntity<String> obtenerColorPorJedi(@PathVariable Integer jediId) {
-        for (SableDTO s : sableService.obtenerTodos()) {
-            if (s.getJediId().equals(jediId)) {
-                return ResponseEntity.ok(s.getColor() + " (Cristal: " + s.getCristalKyber() + ")");
-            }
+    public ResponseEntity<?> obtenerColorPorJedi(@PathVariable Integer jediId) {
+        try {
+            return ResponseEntity.ok(sableService.buscarPorJedi(jediId));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sin sable asignado");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sin sable asignado");
     }
 }
 

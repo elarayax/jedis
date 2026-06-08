@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.jedi.jedis.DTO.JediDTO;
+import com.jedi.jedis.DTO.SableExternoDTO;
 import com.jedi.jedis.Repository.JediRepository;
 import com.jedi.jedis.model.Jedi;
 
@@ -45,17 +46,19 @@ public class JediService {
         dto.setId(jedi.getId());
         dto.setNombre(jedi.getNombre());
         dto.setMidiclorianos(jedi.getMidiclorianos());
+        
         try {
-            String colorDetectado = webClientBuilder.build()
+            SableExternoDTO sableRecuperado = webClientBuilder.build()
                 .get()
                 .uri("http://localhost:8082/api/v1/sables/buscar-por-jedi/" + jedi.getId())
                 .retrieve()
-                .bodyToMono(String.class)
+                .bodyToMono(SableExternoDTO.class)
                 .block();
 
-            dto.setColorSable(colorDetectado);
+            dto.setSable(sableRecuperado);
+            
         } catch (Exception e) {
-            dto.setColorSable("Desconectado de la Forja (sable-service offline o no existe)");
+            dto.setSable(null); 
         }
         return dto;
     }

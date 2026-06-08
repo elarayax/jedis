@@ -7,5 +7,5 @@ public class JediDTO {
     private Integer id;
     private String nombre;
     private Integer midiclorianos;
-    private String ColorSable;
+    private SableExternoDTO sable;
 }

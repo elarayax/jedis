@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jedi.sables.DTO.SableDTO;
+import com.jedi.sables.model.Cristal;
 import com.jedi.sables.model.Sables;
 import com.jedi.sables.repository.SableRepository;
 
@@ -15,6 +16,9 @@ public class SableService {
 
     @Autowired
     private SableRepository sableRepository;
+
+    @Autowired
+    private CristalService cristalService;
 
     public List<SableDTO> obtenerTodos() {
         List<SableDTO> dtos = new ArrayList<>();
@@ -29,12 +33,20 @@ public class SableService {
         return convertirADTO(guardado);
     }
 
+    public SableDTO buscarPorJedi(Integer jedi_id){
+        return convertirADTO(sableRepository.findByJedi_id(jedi_id));
+    }
+
     private SableDTO convertirADTO(Sables s) {
         SableDTO dto = new SableDTO();
         dto.setId(s.getId());
-        dto.setColor(s.getColor());
-        dto.setCristalKyber(s.getCristal_kaiber());
         dto.setJediId(s.getJedi_id());
+        try {
+            Cristal cristalJedi = cristalService.buscarPorId(s.getCristal().getId());
+            dto.setColor(cristalJedi.getColor());
+        } catch (Exception e) {
+            return null;
+        }
         return dto;
     }
 }

@@ -3,9 +3,8 @@ package com.jedi.sables.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jedi.sables.model.Sables;
+import com.jedi.sables.model.Cristal;
 
 @Repository
-public interface SableRepository extends JpaRepository<Sables, Integer> {
-    Sables findByJedi_id(Integer jedi_id);
+public interface CristalRepository extends JpaRepository<Cristal, Integer> {
 }
