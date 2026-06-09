@@ -39,12 +39,14 @@ public class SableController {
     }
 
     @GetMapping("/buscar-por-jedi/{jediId}")
-    public ResponseEntity<?> obtenerColorPorJedi(@PathVariable Integer jediId) {
-        try {
-            return ResponseEntity.ok(sableService.buscarPorJedi(jediId));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sin sable asignado");
+    public ResponseEntity<SableDTO> obtenerColorPorJedi(@PathVariable Integer jediId) {
+        SableDTO sable = sableService.buscarPorJedi(jediId);
+        
+        if (sable == null) {
+            return ResponseEntity.ok(null);
         }
+        
+        return ResponseEntity.ok(sable);
     }
 }
 

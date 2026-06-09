@@ -1,5 +1,9 @@
 @echo off
-cd jedis
+
+cd gateway
+start cmd /k "mvnw spring-boot:run"
+
+cd ../jedis
 start cmd /k "mvnw spring-boot:run"
 
 cd ../sables

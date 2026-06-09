@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -11,6 +12,8 @@ import com.jedi.jedis.DTO.JediDTO;
 import com.jedi.jedis.DTO.SableExternoDTO;
 import com.jedi.jedis.Repository.JediRepository;
 import com.jedi.jedis.model.Jedi;
+
+import reactor.core.publisher.Mono;
 
 @Service
 public class JediService {
@@ -46,12 +49,13 @@ public class JediService {
         dto.setId(jedi.getId());
         dto.setNombre(jedi.getNombre());
         dto.setMidiclorianos(jedi.getMidiclorianos());
-        
+
         try {
             SableExternoDTO sableRecuperado = webClientBuilder.build()
                 .get()
                 .uri("http://localhost:8082/api/v1/sables/buscar-por-jedi/" + jedi.getId())
                 .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError, response -> Mono.empty()) // importante
                 .bodyToMono(SableExternoDTO.class)
                 .block();
 

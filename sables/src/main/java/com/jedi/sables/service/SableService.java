@@ -33,19 +33,26 @@ public class SableService {
         return convertirADTO(guardado);
     }
 
-    public SableDTO buscarPorJedi(Integer jedi_id){
-        return convertirADTO(sableRepository.findByJediId(jedi_id));
+    public SableDTO buscarPorJedi(Integer jedi_id) {
+        Sables sable = sableRepository.findByJediId(jedi_id);
+        if (sable == null) {
+            return null;
+        }
+        return convertirADTO(sable);
     }
 
     private SableDTO convertirADTO(Sables s) {
+        if (s == null) return null;
+
         SableDTO dto = new SableDTO();
         dto.setId(s.getId());
         dto.setJediId(s.getJediId());
+
         try {
             Cristal cristalJedi = cristalService.buscarPorId(s.getCristal().getId());
             dto.setColor(cristalJedi.getColor());
         } catch (Exception e) {
-            return null;
+            dto.setColor(null);
         }
         return dto;
     }

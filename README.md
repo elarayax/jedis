@@ -18,3 +18,8 @@ Tomando en cuenta que nadie querrá iniciar los microservicios uno a uno, hice l
 - iniciar-todo.bat : este se ejecuta en windows, se hace doble click y con eso ya ejecuta ambos microservicios 
 - iniciar-todo.sh: este es para mac/linux, antes de usarlo hay que ejecutar chmod +x iniciar-todo.sh y luego ./iniciar.sh y así en la terminal se inician ambos códigos
 
+v5:
+Se crea un nuevo microservicio, este es el apigateway, la gracia de este es que hace que los microservicios se ejecuten desde una url
+http://localhost:8080/api/v1/jedis esta por ejemplo, hace que en vez de conectarnos desde el 8081, nos conectemos directo de la 8080
+lo mismo pasa desde la 8082, todas se conectan desde esa, con este api gateway, ya tenemos las bases para poder usar eureka,
+esta nos permitirá conectarnos sin tener que definir el puerto ni nada, eureka se encargará de encontrar los microservicios

@@ -11,12 +11,19 @@ spring:
   application:
     name: sables
   flyway:
-    enabled: 'true'
+    enabled: true
     baseline-on-migrate: 'true'
   jpa:
     show-sql: 'true'
   profiles:
     active: dev
+  sql:
+    init:
+      mode: never
+logging:
+  level:
+    org.springframework.jdbc: DEBUG
+    org.hibernate.SQL: DEBUG
   
 ---
 
@@ -31,7 +38,7 @@ spring:
     password: ''
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
 ---
 

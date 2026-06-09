@@ -7,5 +7,5 @@ import com.jedi.sables.model.Sables;
 
 @Repository
 public interface SableRepository extends JpaRepository<Sables, Integer> {
-    Sables findByJediId(Integer jedi_id);
+    Sables findByJediId(Integer jediId);
 }
