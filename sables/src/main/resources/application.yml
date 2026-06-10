@@ -17,9 +17,7 @@ spring:
     show-sql: 'true'
   profiles:
     active: dev
-  sql:
-    init:
-      mode: never  
+
 ---
 
 spring:
