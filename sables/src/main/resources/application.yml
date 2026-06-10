@@ -19,12 +19,7 @@ spring:
     active: dev
   sql:
     init:
-      mode: never
-logging:
-  level:
-    org.springframework.jdbc: DEBUG
-    org.hibernate.SQL: DEBUG
-  
+      mode: never  
 ---
 
 spring:
