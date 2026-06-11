@@ -23,3 +23,32 @@ Se crea un nuevo microservicio, este es el apigateway, la gracia de este es que 
 http://localhost:8080/api/v1/jedis esta por ejemplo, hace que en vez de conectarnos desde el 8081, nos conectemos directo de la 8080
 lo mismo pasa desde la 8082, todas se conectan desde esa, con este api gateway, ya tenemos las bases para poder usar eureka,
 esta nos permitirá conectarnos sin tener que definir el puerto ni nada, eureka se encargará de encontrar los microservicios
+
+v6:
+Se añade eureka, este nos permite no inicializar los puertos a mano, por lo mismo se crea un nuevo microservicio de eureka, aunque literal 
+pueden usar los mismos que están aqui y refactorizar chiquillos, lo que si, en los bloques que crearon tienen que agregar lo siguiente:
+en el pom añadir esto
+
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>5.0.1</version>
+		</dependency>
+
+y en el application.yml
+
+cambiamos el server a 0 para que sea dinámico y añadimos el cliente de eureka
+
+server:
+  port: 0
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+tambien en las url que se conectan internamente deben cambiarlas para que sean así
+"http://sables/api/v1/sables/buscar-por-jedi/" así como quedan en el apigateway y en el webclient config
+
+añadir @LoadBalanced así como en el de jedis

@@ -53,7 +53,7 @@ public class JediService {
         try {
             SableExternoDTO sableRecuperado = webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/api/v1/sables/buscar-por-jedi/" + jedi.getId())
+                .uri("http://sables/api/v1/sables/buscar-por-jedi/" + jedi.getId())
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, response -> Mono.empty()) // importante
                 .bodyToMono(SableExternoDTO.class)
