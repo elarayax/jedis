@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Iniciando Servidor de Descubrimiento Eureka (Puerto 8761)..."
-osascript -e 'tell application "Terminal" to do script "cd \"'"$(pwd)"'/eureka-server\" && ./mvnw spring-boot:run"'
+osascript -e 'tell application "Terminal" to do script "cd \"'"$(pwd)"'/eureka\" && ./mvnw spring-boot:run"'
 
 echo "Esperando 12 segundos a que Eureka se estabilice..."
 sleep 12

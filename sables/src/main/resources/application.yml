@@ -3,9 +3,11 @@ server:
 
 springdoc:
   api-docs:
-    path: /api-docs
-  swagger-ui:
-    path: /doc/swagger-ui/index.html
+    path: /sables/api-docs
+  packages-to-scan: 
+    com.jedi.sables.controller
+  use-management-port: false
+  override-with-generic-response: true
 
 spring:
   application:

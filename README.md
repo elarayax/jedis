@@ -52,3 +52,7 @@ tambien en las url que se conectan internamente deben cambiarlas para que sean a
 "http://sables/api/v1/sables/buscar-por-jedi/" así como quedan en el apigateway y en el webclient config
 
 añadir @LoadBalanced así como en el de jedis
+
+v7:
+ahora el swagger está unificado, http://localhost:8080/swagger-ui/index.html se inicializa el swagger de todos los microservicios, así
+tienen todo unificado, lo que si, dejar la dependencia del swagger en la version 3.0.0 que si no, cuando esté el hateoas, este no funciona
