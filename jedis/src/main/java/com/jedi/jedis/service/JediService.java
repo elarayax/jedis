@@ -4,30 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import com.jedi.jedis.DTO.JediDTO;
-import com.jedi.jedis.DTO.SableExternoDTO;
 import com.jedi.jedis.Repository.JediRepository;
 import com.jedi.jedis.model.Jedi;
-
-import reactor.core.publisher.Mono;
 
 @Service
 public class JediService {
 
+    private JediValidaciones jediValidaciones;
+
     @Autowired
     private JediRepository jediRepository;
 
-    @Autowired
-    private WebClient.Builder webClientBuilder;
-
     public List<JediDTO> obtenerTodos() {
         List<JediDTO> listaDTOs = new ArrayList<>();
-        List<Jedi> jedisReales = jediRepository.findAll();
-        for (Jedi j : jedisReales) {
+        for (Jedi j : jediRepository.findAll()) {
             listaDTOs.add(convertirADTO(j));
         }
         return listaDTOs;
@@ -40,8 +33,11 @@ public class JediService {
     }
 
     public JediDTO guardar(Jedi nuevoJedi) {
-        Jedi guardado = jediRepository.save(nuevoJedi);
-        return convertirADTO(guardado);
+        if(jediValidaciones.validarNullVacio(nuevoJedi)){
+            Jedi guardado = jediRepository.save(nuevoJedi);
+            return convertirADTO(guardado);
+        }
+        return null;
     }
 
     private JediDTO convertirADTO(Jedi jedi) {
@@ -49,21 +45,7 @@ public class JediService {
         dto.setId(jedi.getId());
         dto.setNombre(jedi.getNombre());
         dto.setMidiclorianos(jedi.getMidiclorianos());
-
-        try {
-            SableExternoDTO sableRecuperado = webClientBuilder.build()
-                .get()
-                .uri("http://sables/api/v1/sables/buscar-por-jedi/" + jedi.getId())
-                .retrieve()
-                .onStatus(HttpStatusCode::is4xxClientError, response -> Mono.empty()) // importante
-                .bodyToMono(SableExternoDTO.class)
-                .block();
-
-            dto.setSable(sableRecuperado);
-            
-        } catch (Exception e) {
-            dto.setSable(null); 
-        }
+        dto.setSable(jediValidaciones.obtenerSable(jedi.getId()));
         return dto;
     }
 }
