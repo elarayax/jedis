@@ -56,3 +56,8 @@ añadir @LoadBalanced así como en el de jedis
 v7:
 ahora el swagger está unificado, http://localhost:8080/swagger-ui/index.html se inicializa el swagger de todos los microservicios, así
 tienen todo unificado, lo que si, dejar la dependencia del swagger en la version 3.0.0 que si no, cuando esté el hateoas, este no funciona
+
+v8:
+Se hicieron cambios pequeños, la clase JediValidaciones contiene como dice su nombre, validaciones, además de que la conexión con el otro micro servicio se movió a esta nueva clase, con el convertir a DTO, así dejamo el service más ligero y no estamos con problemas de 
+tener este archivo con tantas líneas de código y evitamos código repetitivo, se añadió el buscar por id en cristales y se deja el cambio
+en el apigateway para ver que hacer cuando hay más de un controller en el microservicio

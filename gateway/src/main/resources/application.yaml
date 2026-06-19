@@ -9,10 +9,15 @@ spring:
       server:
         webmvc:
           routes:
-            - id: jedi-service
+            - id: jedi-service 
               uri: lb://jedis
               predicates:
                 - Path=/api/v1/jedis/**, /jedis/api-docs/**
+
+            - id: cristales-service
+              uri: lb://sables
+              predicates:
+                - Path=/api/v1/cristales/**, /cristales/api-docs/**
 
             - id: sables-service
               uri: lb://sables

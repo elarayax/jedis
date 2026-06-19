@@ -43,7 +43,7 @@ public class SableController {
         SableDTO sable = sableService.buscarPorJedi(jediId);
         
         if (sable == null) {
-            return ResponseEntity.ok(null);
+            return ResponseEntity.notFound().build();
         }
         
         return ResponseEntity.ok(sable);

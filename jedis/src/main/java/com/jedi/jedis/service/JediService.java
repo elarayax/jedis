@@ -13,6 +13,7 @@ import com.jedi.jedis.model.Jedi;
 @Service
 public class JediService {
 
+    @Autowired
     private JediValidaciones jediValidaciones;
 
     @Autowired
@@ -21,7 +22,7 @@ public class JediService {
     public List<JediDTO> obtenerTodos() {
         List<JediDTO> listaDTOs = new ArrayList<>();
         for (Jedi j : jediRepository.findAll()) {
-            listaDTOs.add(convertirADTO(j));
+            listaDTOs.add(jediValidaciones.convertirADTO(j));
         }
         return listaDTOs;
     }
@@ -29,23 +30,14 @@ public class JediService {
     public JediDTO buscarPorId(Integer id) {
         Jedi j = jediRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Guerrero no encontrado en los archivos Jedi"));
-        return convertirADTO(j);
+        return jediValidaciones.convertirADTO(j);
     }
 
     public JediDTO guardar(Jedi nuevoJedi) {
         if(jediValidaciones.validarNullVacio(nuevoJedi)){
             Jedi guardado = jediRepository.save(nuevoJedi);
-            return convertirADTO(guardado);
+            return jediValidaciones.convertirADTO(guardado);
         }
         return null;
-    }
-
-    private JediDTO convertirADTO(Jedi jedi) {
-        JediDTO dto = new JediDTO();
-        dto.setId(jedi.getId());
-        dto.setNombre(jedi.getNombre());
-        dto.setMidiclorianos(jedi.getMidiclorianos());
-        dto.setSable(jediValidaciones.obtenerSable(jedi.getId()));
-        return dto;
     }
 }
