@@ -12,17 +12,17 @@ spring:
             - id: jedi-service 
               uri: lb://jedis
               predicates:
-                - Path=/api/v1/jedis/**, /jedis/api-docs/**
+                - Path=/api/v1/jedis/**, /api/v2/jedis/**, /jedis/api-docs/**
 
             - id: cristales-service
               uri: lb://sables
               predicates:
-                - Path=/api/v1/cristales/**, /cristales/api-docs/**
+                - Path=/api/v1/cristales/**, /api/v2/cristales/**,  /cristales/api-docs/**
 
             - id: sables-service
               uri: lb://sables
               predicates:
-                - Path=/api/v1/sables/**, /sables/api-docs/**
+                - Path=/api/v1/sables/**, /api/v2/sables/**, /sables/api-docs/**
 
 springdoc:
   swagger-ui:

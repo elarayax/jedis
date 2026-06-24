@@ -1,4 +1,4 @@
-package com.jedi.sables.controller;
+package com.jedi.sables.controller.v1;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

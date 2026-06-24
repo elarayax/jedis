@@ -1,4 +1,4 @@
-package com.jedi.jedis.Controller;
+package com.jedi.jedis.Controller.v1;
 
 import java.util.List;
 
