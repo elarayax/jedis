@@ -67,3 +67,10 @@ Es muy probable que cuando iniciaran el swagger y sus métodos se conecten entre
 a que los microservicios están por defecto diseñados para trabajar solos, lo que hace que precisamente ocurra ese error, por lo mismo
 se añadió la configuración del cors origin en el webConfig, mi recomendación es dejarlo en todos los micro servicios, excluyendo el
 gateway y eureka.
+
+v10:
+Se añade el mítico y temido hateoas, un par de aclaraciones chiquillos
+1. se necesita añadir la dependica hateoas (está en el pom de jedi y sable)
+2. por temas de comodidad, se generaron los package v1 y v2 para así separarlo y sea más entendible
+3. en el dto externo se añade la línea @JsonIgnoreProperties(ignoreUnknown = true) que permite recibir el objeto con el hateoas y no morir en el intento
+4. se añade @RestController("cristalControllerV2") por que me equivoqué y puse el mismo nombre de clase, no haga eso, ponga un V2 en el nuevo y listo
