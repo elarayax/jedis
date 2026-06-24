@@ -16,7 +16,7 @@ import com.jedi.sables.service.SableService;
 
 import jakarta.validation.Valid;
 
-@RestController
+@RestController("sableControllerV2")
 @RequestMapping("/api/v2/sables")
 public class SableController {
 

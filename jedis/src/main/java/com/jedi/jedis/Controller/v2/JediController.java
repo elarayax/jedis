@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RestController
+@RestController("jediControllerV2")
 @RequestMapping("/api/v2/jedis")
 public class JediController {
 

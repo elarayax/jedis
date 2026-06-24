@@ -18,7 +18,7 @@ import com.jedi.jedis.service.JediService;
 
 import jakarta.validation.Valid;
 
-@RestController
+@RestController("jediControllerV1")
 @RequestMapping("/api/v1/jedis")
 public class JediController {
 
