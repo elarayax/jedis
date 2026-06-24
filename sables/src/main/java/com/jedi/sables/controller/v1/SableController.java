@@ -1,4 +1,4 @@
-package com.jedi.sables.controller;
+package com.jedi.sables.controller.v1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
