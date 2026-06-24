@@ -61,3 +61,9 @@ v8:
 Se hicieron cambios pequeños, la clase JediValidaciones contiene como dice su nombre, validaciones, además de que la conexión con el otro micro servicio se movió a esta nueva clase, con el convertir a DTO, así dejamo el service más ligero y no estamos con problemas de 
 tener este archivo con tantas líneas de código y evitamos código repetitivo, se añadió el buscar por id en cristales y se deja el cambio
 en el apigateway para ver que hacer cuando hay más de un controller en el microservicio
+
+v9:
+Es muy probable que cuando iniciaran el swagger y sus métodos se conecten entre si, les apareciera un error de cors origin, esto se debe
+a que los microservicios están por defecto diseñados para trabajar solos, lo que hace que precisamente ocurra ese error, por lo mismo
+se añadió la configuración del cors origin en el webConfig, mi recomendación es dejarlo en todos los micro servicios, excluyendo el
+gateway y eureka.
