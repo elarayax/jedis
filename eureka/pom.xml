@@ -35,14 +35,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
-
-		<!--
-			spring-boot-starter-actuator expone el endpoint /actuator/health.
-			Es necesario para el healthcheck de Docker Compose:
-			  test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
-			Sin esto, Docker Compose no puede saber cuándo Eureka está listo y
-			los servicios con condition: service_healthy nunca arrancan.
-		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
