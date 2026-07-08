@@ -74,3 +74,14 @@ Se añade el mítico y temido hateoas, un par de aclaraciones chiquillos
 2. por temas de comodidad, se generaron los package v1 y v2 para así separarlo y sea más entendible
 3. en el dto externo se añade la línea @JsonIgnoreProperties(ignoreUnknown = true) que permite recibir el objeto con el hateoas y no morir en el intento
 4. se añade @RestController("cristalControllerV2") por que me equivoqué y puse el mismo nombre de clase, no haga eso, ponga un V2 en el nuevo y listo
+
+v11:
+Se añade docker, se deja una guía paso a paso de esto mismo https://docs.google.com/document/d/1bsT-pXcy94SnoHud5uibSnyJC8c1lm_8-wzY5zsq8lc/edit?usp=sharing y algo a tener en cuenta son estos comandos
+
+docker-compose build --no-cache //para que se cree la imagen de docker
+
+docker-compose up //para que se levante el docker
+
+docker-compose down //para detener y eliminar la imagen de docker
+
+en el caso de usar linux o mac, es sin el guion medio entre docker-compose (por si no les funciona), ánimno con dockerizar el proyecto chiquillos!
